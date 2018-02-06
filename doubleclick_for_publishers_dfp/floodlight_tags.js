@@ -31,6 +31,16 @@
       return cookie;
     }
 
+    function translateCustomVariables(obj){
+      var outputString = ';';
+      if(typeof obj !== 'undefined'){
+        for(var i = 0; i < Object.keys(obj).length; i++){
+          outputString += Object.keys(obj)[i] + '=' + obj[Object.keys(obj)[i]]+';';
+        }
+      }
+      return outputString;
+    }
+
     /*
       @param [String] name
         -> optional
@@ -62,21 +72,25 @@
       options = options || {method: 'standard', tagType: 'counter'}
       var axel = Math.random() + "";
       var a = axel * 10000000000000;
-      var append = '';
+      var append = translateCustomVariables(options.customVariables);
       switch(options.method){
         case 'standard':
-          append = ';ord='+a+'?' ;
+          append += 'ord='+a+'?' ;
           break;
         case 'perSession':
-          append = ';ord='+getSessioCookie();
+          append += 'ord='+getSessioCookie();
           break;
         case 'unique':
-          append = ';ord=1;num='+a+'?';
+          append += 'ord=1;num='+a+'?';
           break;
+        default:
+          append += 'ord='+a+'?' ;
       }
       var el = document.createElement('iframe');
       el.src = [
-        '//' + src + '.fls.doubleclick.net/activityi;src=5139505;type=',
+        '//' + src + '.fls.doubleclick.net/activityi;src=',
+        src,
+        ';type=',
         type,
         ';cat=',
         cat,
