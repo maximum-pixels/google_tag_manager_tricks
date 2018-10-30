@@ -1,3 +1,11 @@
+/*
+ * Deprecated
+ * This is unneccesary at this point. Use the Global Site tag (gtag.js)
+ * method of adding floodlight tags. It is much easier, more reliable, 
+ * and has new features that make the tracking better
+/*
+
+
 (function(){
     /*
       Annonymous function to avoid polluting global namespace
