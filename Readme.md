@@ -7,4 +7,4 @@ We solved this by migrating all these `img`, `iframe`, `script` tags into one cu
 This repository will contain a number of tricks we use to take care of the most common issues. Hopefully it will help you out there.
 
 * [Creating Floodlight Tags](https://github.com/maxfwerner/google_tag_manager_tricks/tree/master/doubleclick_for_publishers_dfp/floodlight_tags.js)
-* [Making sure you have Jquery](https://github.com/maxfwerner/google_tag_manager_tricks/tree/master/jQuery/ScriptLoaderInit.html). This is a GTM tag intended to ensure jQuery availability on the site. It will scan the page source to see if jQuery is loaded and if not will add it in, wait until jQuery is available and then push a GTM event for you to use, knowing jQuery is ready.
+* [Making sure you have Jquery](https://github.com/maxfwerner/google_tag_manager_tricks/tree/master/jQuery/ScriptLoaderInit.html). This is a GTM tag intended to ensure jQuery availability on the site. It will scan the page source to see if jQuery is loaded and if not will add it in, wait until jQuery is available and then push a GTM event for you to use, knowing jQuery is ready to use.
