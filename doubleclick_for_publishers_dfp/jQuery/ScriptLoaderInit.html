@@ -1,0 +1,43 @@
+<!-- Load other scripts like GTAG here -->
+<!-- Fire this on pageview -->
+<script>
+    (function(d){
+        window._misc = window._misc || {};
+        window._misc.maxjQueryTest = 30;
+        if(/script.*jquery.*/.test(d.documentElement.innerHTML)){
+            //document has jQuery, test if loaded
+            checkjQuery();
+        }else{
+            //add jQuery
+            var el = d.createElement('script');
+            el.src = 'https://code.jquery.com/jquery-3.3.1.min.js';
+            d.body.appendChild(el);
+            checkjQuery();
+        }
+    
+        function checkjQuery(){
+            if(typeof jQuery === 'undefined'){
+                if(window._misc.maxjQueryTest > 0){
+                    //ensure we only test 30x tops (i.e. 3 seconds until we give up)
+                    window._misc.maxjQueryTest -= 1;
+                    setTimeout(checkjQuery, 100);
+                }else{
+                    //maximum time limit exceeded notify the admins, e.g.
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        event: 'customErrors',
+                        eventCategory: 'Debug',
+                        eventAction: 'jQuery',
+                        eventLabel: 'Maximum Time limit exceeded'
+                    });
+                }
+            }else{
+                //jQuery is ready, fire an event and hang jQuery dependant scripts on this trigger
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    event: 'jQueryReady'
+                });
+            }
+        }
+    })(document);
+</script>
